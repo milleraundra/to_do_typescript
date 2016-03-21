@@ -25,18 +25,36 @@ tasks.push(new ToDoList.WorkTask(tomorrow, "Buy a new shirt.", "Low", people.tho
 tasks.push(new ToDoList.WorkTask(nextDay, "Clean ceiling.", "Low", people.loki));
 
 $(document).ready(function(){
+
+  var highPriority = ToDoList.tasksByPriority("High", tasks);
+  for(var task of highPriority) {
+    console.log("High " + task);
+    $('#high').append('<li>' + task + '</li>');
+  }
+
+  var mediumPriority = ToDoList.tasksByPriority("Medium", tasks);
+  for(var task of mediumPriority) {
+    //console.log(task);
+    $('#medium').append('<li>' + task + '</li>');
+  }
+
+  var lowPriority = ToDoList.tasksByPriority("Low", tasks);
+  for(var task of lowPriority) {
+    $('#low').append('<li>' + task + '</li>');
+  }
+
   var thorTasks = ToDoList.describeTasksForPerson(people.thor, tasks);
     console.log("Here are Thor's tasks: ");
     // console.log(tasks);
     for(var task of thorTasks) {
-      console.log(task);
       $('#thorTasks').append('<li>' + task + '</li>');
 
   }
 
   var homeTasks = ToDoList.tasksByType("WorkTask", tasks);
   for (var singleTask of homeTasks) {
-    console.log(singleTask);
     $('#typesOfTasks').append('<li>' + singleTask.description + '</li>');
   }
+
+
 })

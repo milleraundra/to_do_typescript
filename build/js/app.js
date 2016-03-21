@@ -95,6 +95,16 @@ var ToDoList;
         }
         return matchingTasks;
     };
+    ToDoList.tasksByPriority = function (taskPriority, taskCollection) {
+        var matchingTasks = [];
+        for (var _i = 0, taskCollection_3 = taskCollection; _i < taskCollection_3.length; _i++) {
+            var task = taskCollection_3[_i];
+            if (task.priority === taskPriority) {
+                matchingTasks.push(task.description);
+            }
+        }
+        return matchingTasks;
+    };
 })(ToDoList || (ToDoList = {}));
 /// <reference path="to-do-classes-interface.ts" />
 /// <reference path="to-do-people.ts" />
@@ -117,18 +127,33 @@ tasks.push(new ToDoList.WorkTask(tomorrow, "Save the world.", "High", people.tho
 tasks.push(new ToDoList.WorkTask(tomorrow, "Buy a new shirt.", "Low", people.thor));
 tasks.push(new ToDoList.WorkTask(nextDay, "Clean ceiling.", "Low", people.loki));
 $(document).ready(function () {
+    var highPriority = ToDoList.tasksByPriority("High", tasks);
+    for (var _i = 0, highPriority_1 = highPriority; _i < highPriority_1.length; _i++) {
+        var task = highPriority_1[_i];
+        console.log("High " + task);
+        $('#high').append('<li>' + task + '</li>');
+    }
+    var mediumPriority = ToDoList.tasksByPriority("Medium", tasks);
+    for (var _a = 0, mediumPriority_1 = mediumPriority; _a < mediumPriority_1.length; _a++) {
+        var task = mediumPriority_1[_a];
+        //console.log(task);
+        $('#medium').append('<li>' + task + '</li>');
+    }
+    var lowPriority = ToDoList.tasksByPriority("Low", tasks);
+    for (var _b = 0, lowPriority_1 = lowPriority; _b < lowPriority_1.length; _b++) {
+        var task = lowPriority_1[_b];
+        $('#low').append('<li>' + task + '</li>');
+    }
     var thorTasks = ToDoList.describeTasksForPerson(people.thor, tasks);
     console.log("Here are Thor's tasks: ");
     // console.log(tasks);
-    for (var _i = 0, thorTasks_1 = thorTasks; _i < thorTasks_1.length; _i++) {
-        var task = thorTasks_1[_i];
-        console.log(task);
+    for (var _c = 0, thorTasks_1 = thorTasks; _c < thorTasks_1.length; _c++) {
+        var task = thorTasks_1[_c];
         $('#thorTasks').append('<li>' + task + '</li>');
     }
     var homeTasks = ToDoList.tasksByType("WorkTask", tasks);
-    for (var _a = 0, homeTasks_1 = homeTasks; _a < homeTasks_1.length; _a++) {
-        var singleTask = homeTasks_1[_a];
-        console.log(singleTask);
+    for (var _d = 0, homeTasks_1 = homeTasks; _d < homeTasks_1.length; _d++) {
+        var singleTask = homeTasks_1[_d];
         $('#typesOfTasks').append('<li>' + singleTask.description + '</li>');
     }
 });

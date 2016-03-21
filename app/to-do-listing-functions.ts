@@ -19,4 +19,14 @@ module ToDoList {
     }
     return matchingTasks;
   }
+
+  export var tasksByPriority = function(taskPriority: string, taskCollection: Task[]): String[] {
+    var matchingTasks: String[] = [];
+    for (var task of taskCollection) {
+      if(task.priority === taskPriority) {
+        matchingTasks.push(task.description);
+      }
+    }
+    return matchingTasks;
+  }
 }
