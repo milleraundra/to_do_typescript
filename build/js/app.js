@@ -138,6 +138,16 @@ tasks.push(new ToDoList.WorkTask(tomorrow, "Save the world.", "High", people.tho
 tasks.push(new ToDoList.WorkTask(tomorrow, "Buy a new shirt.", "Low", people.thor));
 tasks.push(new ToDoList.WorkTask(nextDay, "Clean ceiling.", "Low", people.loki));
 $(document).ready(function () {
+    $('#type').hide();
+    $('#priority').hide();
+    $('#buttonType').click(function () {
+        $('#priority').hide();
+        $('#type').show();
+    });
+    $('#buttonPriority').click(function () {
+        $('#priority').show();
+        $('#type').hide();
+    });
     var highPriority = ToDoList.tasksByPriority("High", tasks);
     for (var _i = 0, highPriority_1 = highPriority; _i < highPriority_1.length; _i++) {
         var task = highPriority_1[_i];
@@ -153,18 +163,30 @@ $(document).ready(function () {
         var task = lowPriority_1[_b];
         $('#low').append('<li>' + task + '</li>');
     }
-    var thorTasks = ToDoList.describeTasksForPerson(people.thor, tasks);
-    console.log("Here are Thor's tasks: ");
-    for (var _c = 0, thorTasks_1 = thorTasks; _c < thorTasks_1.length; _c++) {
-        var thorTask = thorTasks_1[_c];
-        $('#thorTasks').append('<li>' + thorTask.description + '</li>');
+    var homeTasks = ToDoList.tasksByType("HomeTask", tasks);
+    for (var _c = 0, homeTasks_1 = homeTasks; _c < homeTasks_1.length; _c++) {
+        var singleTask = homeTasks_1[_c];
+        $('#homeTasks').append('<li>' + singleTask.description + '</li>');
     }
-    var homeTasks = ToDoList.tasksByType("WorkTask", tasks);
-    for (var _d = 0, homeTasks_1 = homeTasks; _d < homeTasks_1.length; _d++) {
-        var singleTask = homeTasks_1[_d];
-        $('#typesOfTasks').append('<li>' + singleTask.description + '</li>');
+    var workTasks = ToDoList.tasksByType("WorkTask", tasks);
+    for (var _d = 0, workTasks_1 = workTasks; _d < workTasks_1.length; _d++) {
+        var singleTask = workTasks_1[_d];
+        $('#workTasks').append('<li>' + singleTask.description + '</li>');
     }
-    var thorPriority = ToDoList.singleTaskByPerson(people.thor, tasks);
-    console.log("thorPriority = " + thorPriority);
-    $('#thor_priority').append('<h6>' + thorPriority.description + '</li>');
+    var hobbyTasks = ToDoList.tasksByType("HobbyTask", tasks);
+    for (var _e = 0, hobbyTasks_1 = hobbyTasks; _e < hobbyTasks_1.length; _e++) {
+        var singleTask = hobbyTasks_1[_e];
+        $('#hobbyTasks').append('<li>' + singleTask.description + '</li>');
+    }
+    //var workTasks =
+    // var thorPriority = ToDoList.singleTaskByPerson(people.thor, tasks);
+    // console.log("thorPriority = " + thorPriority);
+    // $('#thor_priority').append('<h6>' + thorPriority.description + '</li>');
+    //
+    // var thorTasks = ToDoList.describeTasksForPerson(people.thor, tasks);
+    //   console.log("Here are Thor's tasks: ");
+    //   for(var thorTask of thorTasks) {
+    //     $('#thorTasks').append('<li>' + thorTask.description + '</li>');
+    //
+    // }
 });

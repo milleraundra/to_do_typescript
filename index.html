@@ -7,59 +7,58 @@
     <title>To Do</title>
   </head>
   <body>
-    <h1>Hi</h1>
-    <div class="form-group">
-      <!-- <form id="createTask">
-        <label for="taskType">Task Category:</label>
-        <select id="taskType" name="taskType">
-          <option value="HomeTask">Home</option>
-          <option value="WorkTask">Work</option>
-          <option value="HobbyTask">Hobby</option>
-          <option value="option">option</option>
-        </select>
+    <h1>To-Do List</h1>
 
-        <label for="description">description</label>
-        <input type="text" name="description" value="">
-        <label for="priority">Priority</label>
+    <button type="button" id="buttonType" name="types">Tasks by Type</button>
+    <button type="button" id="buttonPriority" name="people">Tasks by Priority</button>
 
-        <select id="priority" name="priority">
-          <option value="High">High</option>
-          <option value="Medium">Medium</option>
-          <option value="Low">Low</option>
-        </select>
+<!-- Tasks by Type -->
 
-      </form> -->
+    <div id="type">
+      <div>
+        <h2>Home Tasks</h2>
+        <ul id="homeTasks"></ul>
+      </div>
+
+      <div>
+        <h2>Work Tasks</h2>
+        <ul id="workTasks"></ul>
+      </div>
+
+      <div>
+        <h2>Hobby Tasks</h2>
+        <ul id="hobbyTasks"></ul>
+      </div>
+
     </div>
 
-    <div class="high">
-      <h2>High Priority Tasks</h2>
-      <ul id="high">
+<!-- Tasks by Priority -->
+    <div id="priority">
+      <div class="high">
+        <h2>High Priority Tasks</h2>
+        <ul id="high">
 
-      </ul>
+        </ul>
+      </div>
+      <div class="medium">
+        <h2>Medium Priority Tasks</h2>
+        <ul id="medium">
+
+        </ul>
+      </div>
+      <div class="low">
+        <h2>Low Priority Tasks</h2>
+        <ul id="low">
+
+        </ul>
+      </div>
     </div>
-    <div class="medium">
-      <h2>Medium Priority Tasks</h2>
-      <ul id="medium">
-
-      </ul>
-    </div>
-    <div class="low">
-      <h2>Low Priority Tasks</h2>
-      <ul id="low">
-
-      </ul>
-    </div>
-
-
-    <div class="dianeTasks"></div>
+    <!-- <div class="dianeTasks"></div>
     <div>
       <h2>Thor's Tasks:</h2>
       <div id="thor_priority">
 
       </div>
-      <ul id="thorTasks"></ul></div>
-    <div>
-      <h2>Home Tasks</h2>
-      <ul id="typesOfTasks"></ul></div>
+      <ul id="thorTasks"></ul></div> -->
   </body>
 </html>

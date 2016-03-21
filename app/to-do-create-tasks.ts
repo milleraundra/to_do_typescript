@@ -26,6 +26,20 @@ tasks.push(new ToDoList.WorkTask(nextDay, "Clean ceiling.", "Low", people.loki))
 
 $(document).ready(function(){
 
+$('#type').hide();
+$('#priority').hide();
+
+$('#buttonType').click(function() {
+  $('#priority').hide();
+  $('#type').show();
+
+});
+
+$('#buttonPriority').click(function() {
+  $('#priority').show();
+  $('#type').hide();
+});
+
   var highPriority = ToDoList.tasksByPriority("High", tasks);
   for(var task of highPriority) {
     $('#high').append('<li>' + task + '</li>');
@@ -41,21 +55,33 @@ $(document).ready(function(){
     $('#low').append('<li>' + task + '</li>');
   }
 
-  var thorTasks = ToDoList.describeTasksForPerson(people.thor, tasks);
-    console.log("Here are Thor's tasks: ");
-    for(var thorTask of thorTasks) {
-      $('#thorTasks').append('<li>' + thorTask.description + '</li>');
-
-  }
-
-  var homeTasks = ToDoList.tasksByType("WorkTask", tasks);
+  var homeTasks = ToDoList.tasksByType("HomeTask", tasks);
   for (var singleTask of homeTasks) {
-    $('#typesOfTasks').append('<li>' + singleTask.description + '</li>');
+    $('#homeTasks').append('<li>' + singleTask.description + '</li>');
   }
 
-  var thorPriority = ToDoList.singleTaskByPerson(people.thor, tasks);
-  console.log("thorPriority = " + thorPriority);
-  $('#thor_priority').append('<h6>' + thorPriority.description + '</li>');
+  var workTasks = ToDoList.tasksByType("WorkTask", tasks);
+  for (var singleTask of workTasks) {
+    $('#workTasks').append('<li>' + singleTask.description + '</li>');
+  }
 
+  var hobbyTasks = ToDoList.tasksByType("HobbyTask", tasks);
+  for (var singleTask of hobbyTasks) {
+    $('#hobbyTasks').append('<li>' + singleTask.description + '</li>');
+  }
+
+  //var workTasks =
+
+  // var thorPriority = ToDoList.singleTaskByPerson(people.thor, tasks);
+  // console.log("thorPriority = " + thorPriority);
+  // $('#thor_priority').append('<h6>' + thorPriority.description + '</li>');
+
+  //
+  // var thorTasks = ToDoList.describeTasksForPerson(people.thor, tasks);
+  //   console.log("Here are Thor's tasks: ");
+  //   for(var thorTask of thorTasks) {
+  //     $('#thorTasks').append('<li>' + thorTask.description + '</li>');
+  //
+  // }
 
 })
