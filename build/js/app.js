@@ -80,7 +80,7 @@ var ToDoList;
         for (var _i = 0, taskCollection_1 = taskCollection; _i < taskCollection_1.length; _i++) {
             var task = taskCollection_1[_i];
             if (task.assignedTo === assignee) {
-                descriptions.push(task.description);
+                descriptions.push(task);
             }
         }
         return descriptions;
@@ -104,6 +104,17 @@ var ToDoList;
             }
         }
         return matchingTasks;
+    };
+    ToDoList.singleTaskByPerson = function (person, taskCollection) {
+        var tasks = ToDoList.describeTasksForPerson(person, taskCollection);
+        var foundTask = "No High Priority Tasks";
+        for (var _i = 0, tasks_1 = tasks; _i < tasks_1.length; _i++) {
+            var task = tasks_1[_i];
+            if (task.priority === "High") {
+                foundTask = task;
+                return foundTask;
+            }
+        }
     };
 })(ToDoList || (ToDoList = {}));
 /// <reference path="to-do-classes-interface.ts" />
@@ -130,13 +141,11 @@ $(document).ready(function () {
     var highPriority = ToDoList.tasksByPriority("High", tasks);
     for (var _i = 0, highPriority_1 = highPriority; _i < highPriority_1.length; _i++) {
         var task = highPriority_1[_i];
-        console.log("High " + task);
         $('#high').append('<li>' + task + '</li>');
     }
     var mediumPriority = ToDoList.tasksByPriority("Medium", tasks);
     for (var _a = 0, mediumPriority_1 = mediumPriority; _a < mediumPriority_1.length; _a++) {
         var task = mediumPriority_1[_a];
-        //console.log(task);
         $('#medium').append('<li>' + task + '</li>');
     }
     var lowPriority = ToDoList.tasksByPriority("Low", tasks);
@@ -146,14 +155,16 @@ $(document).ready(function () {
     }
     var thorTasks = ToDoList.describeTasksForPerson(people.thor, tasks);
     console.log("Here are Thor's tasks: ");
-    // console.log(tasks);
     for (var _c = 0, thorTasks_1 = thorTasks; _c < thorTasks_1.length; _c++) {
-        var task = thorTasks_1[_c];
-        $('#thorTasks').append('<li>' + task + '</li>');
+        var thorTask = thorTasks_1[_c];
+        $('#thorTasks').append('<li>' + thorTask.description + '</li>');
     }
     var homeTasks = ToDoList.tasksByType("WorkTask", tasks);
     for (var _d = 0, homeTasks_1 = homeTasks; _d < homeTasks_1.length; _d++) {
         var singleTask = homeTasks_1[_d];
         $('#typesOfTasks').append('<li>' + singleTask.description + '</li>');
     }
+    var thorPriority = ToDoList.singleTaskByPerson(people.thor, tasks);
+    console.log("thorPriority = " + thorPriority);
+    $('#thor_priority').append('<h6>' + thorPriority.description + '</li>');
 });

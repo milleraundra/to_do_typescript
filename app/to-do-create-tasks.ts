@@ -28,13 +28,11 @@ $(document).ready(function(){
 
   var highPriority = ToDoList.tasksByPriority("High", tasks);
   for(var task of highPriority) {
-    console.log("High " + task);
     $('#high').append('<li>' + task + '</li>');
   }
 
   var mediumPriority = ToDoList.tasksByPriority("Medium", tasks);
   for(var task of mediumPriority) {
-    //console.log(task);
     $('#medium').append('<li>' + task + '</li>');
   }
 
@@ -45,9 +43,8 @@ $(document).ready(function(){
 
   var thorTasks = ToDoList.describeTasksForPerson(people.thor, tasks);
     console.log("Here are Thor's tasks: ");
-    // console.log(tasks);
-    for(var task of thorTasks) {
-      $('#thorTasks').append('<li>' + task + '</li>');
+    for(var thorTask of thorTasks) {
+      $('#thorTasks').append('<li>' + thorTask.description + '</li>');
 
   }
 
@@ -55,6 +52,10 @@ $(document).ready(function(){
   for (var singleTask of homeTasks) {
     $('#typesOfTasks').append('<li>' + singleTask.description + '</li>');
   }
+
+  var thorPriority = ToDoList.singleTaskByPerson(people.thor, tasks);
+  console.log("thorPriority = " + thorPriority);
+  $('#thor_priority').append('<h6>' + thorPriority.description + '</li>');
 
 
 })

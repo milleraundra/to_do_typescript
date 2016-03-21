@@ -1,10 +1,10 @@
 /// <reference path="to-do-classes-interface.ts"/>
 module ToDoList {
-  export var describeTasksForPerson = function(assignee: IPerson, taskCollection: Task[]): String[] {
-    var descriptions: String[] = [];
+  export var describeTasksForPerson = function(assignee: IPerson, taskCollection: Task[]): Object[] {
+    var descriptions: Object[] = [];
     for(var task of taskCollection) {
       if(task.assignedTo === assignee) {
-        descriptions.push(task.description);
+        descriptions.push(task);
       }
     }
     return descriptions;
@@ -28,5 +28,16 @@ module ToDoList {
       }
     }
     return matchingTasks;
+  }
+
+  export var singleTaskByPerson = function(person: IPerson, taskCollection: Task[]): Object {
+    var tasks = describeTasksForPerson(person, taskCollection);
+    var foundTask: Object = "No High Priority Tasks";
+    for (var task of tasks) {
+      if (task.priority === "High") {
+        foundTask = task;
+        return foundTask;
+      }
+    }
   }
 }
